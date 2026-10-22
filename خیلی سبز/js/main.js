@@ -1,15 +1,10 @@
-/* =========================================
-   متغیرهای اصلی
-========================================= */
+
 
 let products = [];
 let suggestions = [];
 let categories = [];
 let collections = [];
 
-/* =========================================
-   بنرهای اسلایدر اصلی
-========================================= */
 
 const heroBanners = [
   { image: "./Images/banner-1.png", alt: "سبد جامع انسانی" },
@@ -19,32 +14,24 @@ const heroBanners = [
   { image: "./Images/banner-5.png", alt: "زیست رو بسباربه" },
 ];
 
-/* =========================================
-   دریافت اطلاعات از JSON Server
-========================================= */
+
+
 
 async function loadData() {
     try {
-        const [p, s, c] = await Promise.all([
-            fetch("http://localhost:3000/products"),
-            fetch("http://localhost:3000/suggestions"),
-            fetch("http://localhost:3000/categories")
-        ]);
+        const response = await fetch(
+            "https://cokewhore444.github.io/khelySabssss/db.json"
+        );
 
-        if (!p.ok || !s.ok || !c.ok) {
-            throw new Error("خطا در دریافت اطلاعات از سرور");
+        if (!response.ok) {
+            throw new Error("خطا در دریافت اطلاعات از GitHub");
         }
 
-        const [productsData, suggestionsData, categoriesData] =
-            await Promise.all([
-                p.json(),
-                s.json(),
-                c.json()
-            ]);
+        const data = await response.json();
 
-        products = productsData;
-        suggestions = suggestionsData;
-        categories = categoriesData;
+        products = data.products || [];
+        suggestions = data.suggestions || [];
+        categories = data.categories || [];
 
         console.log("محصولات:", products);
         console.log("پیشنهادها:", suggestions);
@@ -54,9 +41,8 @@ async function loadData() {
         console.error("خطا در loadData:", error);
     }
 }
-/* =========================================
-   اسلایدر بنرها
-========================================= */
+
+
 
 function buildHeroSwiper() {
   const wrapper = document.getElementById("heroWrapper");
@@ -114,9 +100,6 @@ function buildHeroSwiper() {
   console.log("اسلایدر بنرها آماده شد.");
 }
 
-/* =========================================
-   نمایش محصولات ویژه
-========================================= */
 
 function renderProducts() {
   const wrapper = document.getElementById("productWrapper");
@@ -133,9 +116,6 @@ function renderProducts() {
     .join("");
 }
 
-/* =========================================
-   نمایش پیشنهادات
-========================================= */
 
 function renderSuggestions() {
   const wrapper = document.getElementById("suggestionWrapper");
@@ -152,9 +132,6 @@ function renderSuggestions() {
     .join("");
 }
 
-/* =========================================
-   نمایش دسته‌بندی کتاب‌ها
-========================================= */
 
 function renderCategories() {
   const grid = document.getElementById("categoryGrid");
@@ -173,9 +150,6 @@ function renderCategories() {
     .join("");
 }
 
-/* =========================================
-   نمایش ۲۱ لوگوی SVG مجموعه‌ها
-========================================= */
 
 function renderCollections() {
   const grid = document.getElementById("collectionsGrid");
@@ -226,9 +200,6 @@ function renderCollections() {
   console.log("۲۱ لوگوی SVG به صفحه اضافه شدند.");
 }
 
-/* =========================================
-   ساخت فوتر
-========================================= */
 
 function buildFooter() {
   const footer = document.getElementById("footer");
@@ -319,9 +290,6 @@ function buildFooter() {
     `;
 }
 
-/* =========================================
-   راه‌اندازی صفحه
-========================================= */
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -340,7 +308,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     buildFooter();
 
-    // راه‌اندازی اسلایدرهای محصولات
+
     if (typeof initAllSwipers === "function") {
       initAllSwipers();
     }
