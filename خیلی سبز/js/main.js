@@ -6,6 +6,7 @@ let categories = [];
 let collections = [];
 
 
+
 const heroBanners = [
   { image: "./Images/banner-1.png", alt: "سبد جامع انسانی" },
   { image: "./Images/banner-2.png", alt: "بسته جامع کنکور" },
@@ -13,7 +14,6 @@ const heroBanners = [
   { image: "./Images/banner-4.png", alt: "دیلی سبز" },
   { image: "./Images/banner-5.png", alt: "زیست رو بسباربه" },
 ];
-
 
 
 
@@ -308,7 +308,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     buildFooter();
 
-
+    // راه‌اندازی اسلایدرهای محصولات
     if (typeof initAllSwipers === "function") {
       initAllSwipers();
     }

@@ -1,6 +1,3 @@
-// ============================================
-// ===== نوار جستجو =====
-// ============================================
 (function buildSearchBar() {
     const searchBar = document.getElementById('searchBar');
     if (!searchBar) return;

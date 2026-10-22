@@ -1,6 +1,3 @@
-// ============================================
-// ===== ساخت هدر =====
-// ============================================
 (function buildHeader() {
     const header = document.getElementById('header');
     if (!header) return;
@@ -98,12 +95,11 @@
         </div>
     `;
 
-    // افکت اسکرول
     window.addEventListener('scroll', () => {
         header.classList.toggle('scrolled', window.scrollY > 50);
     }, { passive: true });
 
-    // منوی موبایل
+
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
     if (menuToggle && mobileMenu) {
